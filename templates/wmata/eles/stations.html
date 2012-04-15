@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+{% block bodyid %}wmataELESStations{% endblock %}
+{% block body %}
+<div data-role="page">
+{{ header('Stations') }}
+  <div data-role="content">
+    <ul data-role="listview" data-filter="true">
+     {% for station in incidentStations %}
+      <li><a href="{{url_for('wmata_eles_incidents_station', rtuCodes='/'.join(station.rtus))}}">{{station.name}}{% for line in station.lines %}<div class="circle lp {{line}}"></div>{% endfor %}<span class="ui-li-count">{{incidentCountByStation(station.rtus)}}</span></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

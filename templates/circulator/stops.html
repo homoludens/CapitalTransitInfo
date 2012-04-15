@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+{% block bodyid %}circulatorstops{% endblock %}
+{% block body %}
+<div data-role="page">
+{{ header('Stops') }}
+  <div data-role="content">
+    <ul data-role="listview">
+      {% for stop in stops %}
+      <li><a style="white-space: normal;" href="{% if 'stopID' in stop %}{{ url_for('circulator_stop_id', stopID=stop.stopID) }}{% else %}{{ url_for('circulator_stop_tag', stopTag=stop.tag, routeTag=route.tag) }}{% endif %}">{{stop.title}}</a></li>
+      {% else %}
+      <li>No stops nearby.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+{% block bodyid %}wmataELESStation{% endblock %}
+{% block body %}
+<div data-role="page">
+{{ header('Outages') }}
+  <div data-role="content">
+    <ul data-role="listview">
+    {% for incident in incidents %}
+      <li>
+      {% if incident.unitType == "ESCALATOR" %}
+      <img src="/static/icons/icon-cti-escalator.png" class="bg ui-li-icon">
+      {% elif incident.unitType == "ELEVATOR" %}
+      <img src="/static/icons/icon-cti-elevator.png" class="bg ui-li-icon">
+      {% endif %}
+      <p class="ui-li-aside">{{incident.unitName}}</p>
+      <h3>{{incident.locationDescription}}</h3>
+      <p>{{incident.symptomDescription}}</p>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

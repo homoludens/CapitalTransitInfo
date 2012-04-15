@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+{% block bodyid %}wmataStation{% endblock %}
+{% block body %}
+<div data-role="page">
+{{ header('Arrivals') }}
+
+  <div data-role="content">
+    <ul data-role="listview">
+      {% for predictionsGroup in predictionGroups %}
+        <li data-role="list-divider">{{getTitle(getTrack(predictionsGroup[0], predictionsGroup[1]))}}</li>
+        {% for prediction in predictions[predictionsGroup] %}
+          <li><div class="circle {{prediction.line}}"></div>&nbsp;<small>{{prediction.dest}}</small><p class="ui-li-aside">{{prediction.car}} cars</p><span class="ui-li-count">{{prediction.min}}</span></li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

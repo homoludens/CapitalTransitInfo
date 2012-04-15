@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+{% block bodyid %}artRoutes{% endblock %}
+{% block body %}
+<div data-role="page">
+{{ header('Routes') }}
+  <div data-role="content">
+    <ul data-role="listview">
+      {% for route in routes %}
+      <li><a href="{{ url_for('art_route', routeNumber=route.number) }}">{{route.number}}&nbsp;<small class="wrap">{{route.name}}</small></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

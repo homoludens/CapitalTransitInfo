@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+{% block bodyid %}wmataincidents{% endblock %}
+{% block body %}
+<div data-role="page">
+{{ header('Rail Alerts') }}
+  <div data-role="content">
+    <ul data-role="listview">
+    {% for incident in incidents %}
+    <li>{{incident.description}}</li>
+    {% else %}
+    <li>No active incidents.</li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

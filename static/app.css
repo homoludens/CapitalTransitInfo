@@ -1,0 +1,128 @@
+.circle {
+    border-radius: 50%;
+    -webkit-border-radius: 9px;
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    //position: absolute;
+    //top: 50%;
+    //margin-top: 9px;
+}
+
+.circle.lp {
+    margin-left: 9px;
+}
+
+.wrap {
+    white-space: normal;
+}
+
+.no-ellipses,
+.no-ellipses .ui-header .ui-title, 
+.no-ellipses .ui-footer .ui-title,
+.no-ellipses .ui-btn-inner,
+.no-ellipses .ui-select .ui-btn-text,
+.no-ellipses .ui-li .ui-btn-text a.ui-link-inherit,
+.no-ellipses .ui-li-heading,
+.no-ellipses .ui-li-desc {text-overflow:ellipsis;overflow:visible;white-space:normal;}
+
+p.ui-li-aside {
+    width: auto;
+    padding-left: 0.5em;
+    padding-right: 0.3em;
+    padding-bottom: 0.5em;
+}
+
+
+.GR {
+    background-color: #009D57;
+}
+
+.RD {
+    background-color: #E94333;
+}
+
+.BL {
+    background-color: #0D7BBA;
+}
+
+.OR {
+    background-color: #F89038;
+}
+
+.YL {
+    background-color: #FDE310;
+}
+
+.ui-icon-cti-announcement {
+    background-image: url("/static/icons/icon-cti-announcement.png");
+}
+
+.ui-icon-cti-bus {
+    background-image: url("/static/icons/icon-cti-bus.png");
+}
+
+.ui-icon-cti-elevator {
+    background-image: url("/static/icons/icon-cti-elevator.png");
+}
+
+.ui-icon-cti-escalator {
+    background-image: url("/static/icons/icon-cti-escalator.png");
+}
+
+.ui-icon-cti-geoloc {
+    background-image: url("/static/icons/icon-cti-geoloc.png");
+}
+
+.ui-icon-cti-information {
+    background-image: url("/static/icons/icon-cti-information.png");
+}
+
+.ui-icon-cti-rail {
+    background-image: url("/static/icons/icon-cti-rail.png");
+}
+
+.bg {
+    background: #000;
+    background: rgba(0, 0, 0, .8);
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    .ui-icon-cti-announcement {
+        background-image: url("/static/icons/hd-icon-cti-announcement.png");
+        background-size: 18px 18px;
+    }
+
+    .ui-icon-cti-bus {
+        background-image: url("/static/icons/hd-icon-cti-bus.png");
+        background-size: 18px 18px;
+    }
+
+    .ui-icon-cti-elevator {
+        background-image: url("/static/icons/hd-icon-cti-elevator.png");
+        background-size: 18px 18px;   
+    }
+    
+    .ui-icon-cti-escalator {
+        background-image: url("/static/icons/hd-icon-cti-escalator.png");
+        background-size: 18px 18px;
+    }
+    
+    .ui-icon-cti-geoloc {
+        background-image: url("/static/icons/hd-icon-cti-geoloc.png");
+        background-size: 18px 18px;
+    }
+
+    .ui-icon-cti-information {
+        background-image: url("/static/icons/hd-icon-cti-information.png");
+        background-size: 18px 18px;
+    }
+
+    .ui-icon-cti-rail {
+        background-image: url("/static/icons/hd-icon-cti-rail.png");
+        background-size: 18px 18px;
+    }
+}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+{% block bodyid %}wmataStops{% endblock %}
+{% block body %}
+<div data-role="page">
+{{ header('Stops') }}
+  <div data-role="content">
+    <ul data-role="listview" data-filter="true">
+      {% for stop in stops %}
+      <li><a style="white-space: normal;" href="{{ url_for('wmata_stop', stopID=stop.id) }}">{{stop.name}}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

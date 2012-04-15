@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+{% block bodyid %}artStops{% endblock %}
+{% block body %}
+<div data-role="page">
+{{ header('Stops') }}
+  <div data-role="content">
+    <ul data-role="listview" data-filter="true">
+      {% for stop in stops %}
+      <li><a href="{{ url_for('art_stop', stopTag=stop.tag) }}">{{stop.name}}<p class="ui-li-aside">{{stop.number}}</p></a></li>
+      {% else %}
+      <li>No stops nearby.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

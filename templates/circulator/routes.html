@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+{% block bodyid %}circulatorroutes{% endblock %}
+{% block body %}
+<div data-role="page">
+{{ header('Routes') }}
+  <div data-role="content">
+    <ul data-role="listview">
+      {% for route in routes %}
+      <li><a href="{{ url_for('circulator_route', routeTag=route.tag) }}">{{route.title}}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

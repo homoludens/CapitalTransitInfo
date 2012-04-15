@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+{% block bodyid %}wmatastations{% endblock %}
+{% block body %}
+<div data-role="page">
+{{ header('Stations') }}
+  <div data-role="content">
+    <ul data-role="listview" data-filter="true">
+     {% for station in stations %}
+      <li><a href="{{url_for('wmata_station', rtuCodes='/'.join(station.rtus))}}">{{station.name}}{% for line in station.lines %}<div class="circle lp {{line}}"></div>{% endfor %}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

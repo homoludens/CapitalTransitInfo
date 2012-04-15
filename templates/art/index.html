@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+{% block bodyid %}artindex{% endblock %}
+{% block body %}
+<div data-role="page">
+{{ header('ART') }}
+ <div data-role="content">
+    <ul data-role="listview">
+      <li data-role="fieldcontain">
+      <form action="{{url_for('art_stop_lookup')}}" method="get" id="stopForm" data-ajax="false">
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+              <label for="stopid" class="ui-hidden-accessible">Stop ID</label>
+              <input type="text" name="stopid" id="stopid" value="" pattern="\d*" size="5" maxlength="5" placeholder="Enter Stop ID" data-mini="true" class="required digits"/>
+            </div>
+            <div class="ui-block-b">
+              <button type="submit" data-mini="true" data-inline="true">Go</button>
+            </div>
+          </div>
+        </form>
+      </li>
+      <li><a href="{{url_for('art_routes')}}">View Routes</a></li>
+   </ul>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+
+{% block bodyid %}wmatabus{% endblock %}
+{% block body %}
+<div data-role="page">
+{{ header('Metrobus') }}
+  <div data-role="content">
+    <ul data-role="listview">
+      <li data-role="fieldcontain">
+        <form action="{{url_for('wmata_stop_lookup')}}" method="get" id="stopForm" data-ajax="false">
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+              <label for="stopid" class="ui-hidden-accessible">Stop ID</label>
+              <input type="text" name="stopid" id="stopid" value="" pattern="\d*" size="7" maxlength="7" placeholder="Enter Stop ID" data-mini="true" class="required digits"/>
+            </div>
+            <div class="ui-block-b">
+              <button type="submit" data-mini="true" data-inline="true">Go</button>
+            </div>
+          </div>
+        </form>
+      </li>
+      <li><a href="{{url_for('wmata_bus_routes')}}">View Routes</a></li>
+   </ul>
+  </div>
+</div>
+{% endblock %}

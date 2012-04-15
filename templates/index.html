@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "header.html" import header as header %}
+
+{% block bodyid %}index{% endblock %}
+{% block body %}
+<div data-role="page" class="no-ellipses">
+{{ header('CapitalTransitInfo', False) }}
+  <div data-role="content">	
+    <ul data-role="listview" data-split-icon="cti-geoloc" data-split-theme="d">
+      <li data-role="list-divider">WMATA</li>
+      <li><a href="{{url_for('wmata_stations')}}"><img src="/static/icons/icon-cti-rail.png" class="bg ui-li-icon">Next Train</a>
+          <a href="{{url_for('wmata_stations_geo')}}" data-rel="dialog" data-transition="pop">Stations Near Me</a></li>
+      <li><a href="{{url_for('wmata_bus')}}"><img src="/static/icons/icon-cti-bus.png" class="bg ui-li-icon">Next Bus</a>
+          <a href="{{url_for('wmata_stops_geo')}}" data-rel="dialog" data-transition="pop">Stops Near Me</a></li>
+      <li><a href="{{url_for('wmata_rail_incidents')}}"><img src="/static/icons/icon-cti-announcement.png" class="bg ui-li-icon">Rail Alerts<span class="ui-li-count">{{wmataRailIncidentCount}}</span></a></li>
+      <li><a href="{{url_for('wmata_eles_incidents')}}"><img src="/static/icons/icon-cti-announcement.png" class="bg ui-li-icon">Elevator/Escalator Alerts</a><span class="ui-li-count">{{wmataELESIncidentCount}}</span></li>
+      <li data-role="list-divider">DC Circulator</li>
+      <li><a href="{{url_for('circulator_routes')}}"><img src="/static/icons/icon-cti-bus.png" class="bg ui-li-icon">Next Bus</a>
+          <a href="{{url_for('circulator_stops_geo')}}" data-rel="dialog" data-transition="pop">Stops Near Me</a></li>
+      <li data-role="list-divider">ART - Arlington Transit</li>
+      <li><a href="{{url_for('art_index')}}"><img src="/static/icons/icon-cti-bus.png" class="bg ui-li-icon">Next Bus</a>
+          <a href="{{url_for('art_stops_geo')}}" data-rel="dialog" data-transition="pop">Stops Near Me</a></li>
+      <li data-role="list-divider">About</li>
+      <li><a href="{{url_for('about')}}">About CapitalTransitInfo</a></li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

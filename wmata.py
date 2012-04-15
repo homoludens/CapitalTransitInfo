@@ -1,19 +1,14 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 import json
 from collections import defaultdict
 
 import requests
-#from lxml import etree
-
-from pprint import pprint
 
 from pymongo import Connection, GEO2D, ASCENDING
 
-NSMAP = {'w':"http://www.wmata.com"}
-
 class WMATA(object):
     def __init__(self, apiKey, db):
-        self.rs = requests.session()
+        self.rs = requests.session(hooks=dict(args=lambda x: self.logCall(x)))
         self.apiKey = apiKey
         self.stopsCollection = db['wmataStops']
         self.stopsCollection.create_index([("location", GEO2D)])
@@ -24,6 +19,11 @@ class WMATA(object):
         self.railPredictionsCollection = db['wmataRailPredictions']
         self.railIncidentsCollection = db['wmataRailIncidents']
         self.elesIncidentsCollection = db['wmataELESIncidents']
+        self.apiRateLimitCollection = db['wmataRateLimit']
+
+    def logCall(self, args):
+        today = str(date.today())
+        self.apiRateLimitCollection.update({'date': today}, {'$inc': {'calls': 1}}, upsert=True)        
 
     def fetchStops(self):
         r = self.rs.get("http://api.wmata.com/Bus.svc/json/JStops?api_key=" + self.apiKey)
@@ -68,8 +68,6 @@ class WMATA(object):
                 stationData = stationsOut[name]
                 stationData['rtus'] |= rtu
                 stationData['lines'] |= lines
-
-        pprint(stationsOut)
 
         for station in stationsOut.values():
             station['rtus'] = list(station['rtus'])

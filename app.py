@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from pymongo import Connection
 
 from wmata import WMATA
@@ -121,6 +121,22 @@ def wmata_eles_incidents_station(rtuCodes):
     rtuCodes = rtuCodes.split('/')
     incidentsAtStation = wmata.getELESIncidentsByStation(rtuCodes)
     return render_template("wmata/eles/incidents.html", incidents=incidentsAtStation)
+
+@app.route("/wmata/incidents/eles/json")
+def wmata_eles_incidents_json():
+    stationList = []
+    
+    incidentStations = wmata.getELESIncidentStations()
+
+    for station in incidentStations:
+        stationList.append((station['name'], wmata.getELESIncidentCountByStation(station['rtus'])))
+
+    stationList.sort(key=lambda x: x[1], reverse=True)
+
+    failCount = len(stationList)
+    failRate = "%.2f%%" % (100 * (failCount / 86.0))
+
+    return jsonify(stationList=stationList, failRate=failRate, failCount=failCount)
 
 @app.route("/circulator/routes")
 def circulator_routes():

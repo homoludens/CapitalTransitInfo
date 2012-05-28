@@ -26,6 +26,7 @@ class Connexionz(object):
         stopTree = etree.fromstring(r.content)
 
         for stop in stopTree.xpath('/c:Platforms/c:Platform', namespaces=NSMAP):
+            position = stop.xpath('./c:Position', namespaces=NSMAP)[0]
             stopData = {'agency': self.agency,
                         'name': stop.attrib['Name'],
                         'tag': stop.attrib['PlatformTag'],
@@ -126,19 +127,3 @@ class Connexionz(object):
                                               upsert=True)
 
         return predictions
-                                                    
-
-def main():
-    connection = Connection()
-    db = connection['dctm']
-    collectionPrefix = "art"
-
-    cnx = Connexionz("http://realtime.commuterpage.com", "ART", db, collectionPrefix)
-
-    cnx.loadStops()
-    cnx.loadRoutes()
-
-if __name__ == '__main__':
-    main()
-
-            

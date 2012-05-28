@@ -197,15 +197,3 @@ class NextBus(object):
         return self.predictionsCollection.find({"agency": self.agencyID,
                                                 'stopTag': stopTag,
                                                 'routeTag': routeTag})
-        
-def main():
-    connection = Connection()
-    db = connection['dctm']
-    
-    nb = NextBus('dc-circulator', db, "nextbus")
-
-    nb.loadAgencyData()
-    nb.fixLongStopNames()
-
-if __name__ == '__main__':
-    main()

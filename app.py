@@ -89,20 +89,18 @@ def getTitle(track):
             'B2': 'To Shady Grove via Downtown',
             'C1': 'To Maryland via Downtown',
             'C2': 'To Virginia',
-            'C3': 'Blue/Yellow Lines', #center track at C10
             'D1': 'To Maryland',
             'D2': 'To Virginia via Downtown',
             'E1': 'To Greenbelt',
-            'E2': 'To Branch Avenue via Downtown',
+            'E2': 'To Maryland and Virginia via Downtown',
             'F1': 'To Greenbelt via Downtown',
-            'F2': 'To Branch Avenue',
+            'F2': 'To Maryland and Virginia',
             'G1': 'To Largo',
             'G2': 'To Virginia via Downtown',
             'J1': 'To Maryland via Downtown',
             'J2': 'To Franconia-Springfield',
             'K1': 'To Maryland via Downtown',
             'K2': 'To Vienna',
-            'K3': 'Orange Line' #center track at K07
             }[track]
 
 @app.route("/wmata/incidents/rail")

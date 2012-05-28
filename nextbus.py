@@ -138,19 +138,6 @@ class NextBus(object):
                                              'tag': stop['tag']},
                                             {"$addToSet": {'routes': routeTag}})
 
-    def getShortTitle(self, routeTag, stopTag):
-        r = self.rs.get('http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=' + \
-                         self.agencyID + '&r=' + routeTag + '&s=' + stopTag + '&useShortTitles=true')
-        r.raise_for_status()
-        stopTree = etree.fromstring(r.content)
-        return stopTree.xpath('/body/predictions/@stopTitle')[0]
-
-    def fixLongStopNames(self):
-        stops = self.stopsCollection.find()
-        for stop in stops:
-            stop['title'] = self.getShortTitle(stop['routes'][0], stop['tag'])
-            self.stopsCollection.save(stop)
-
     def getRoutes(self):
         routes = self.routesCollection.find({"agency": self.agencyID})
         return routes

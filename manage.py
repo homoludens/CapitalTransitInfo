@@ -27,8 +27,6 @@ def load_circulator():
     circulator = NextBus("dc-circulator", db, 'nextbus')
     circulator.loadAgencyData()
     print "Loaded Circulator stops and routes"
-    circulator.fixLongStopNames()
-    print "Fixed long stop names"
 
 @manager.command
 def load_art():
